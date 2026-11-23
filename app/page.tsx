@@ -7,6 +7,7 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text"
 import { MagicCard } from "@/components/ui/magic-card"
 import { DotPattern } from "@/components/ui/dot-pattern"
 import { GridPattern } from "@/components/ui/grid-pattern"
+import { OrbitingCircles } from "@/components/ui/orbiting-circles"
 import { ShineBorder } from "@/components/ui/shine-border"
 import { StudyPreview } from "./study-preview"
 
@@ -70,13 +71,17 @@ export default function Home() {
                 <a className="action" href="#workflow">See how it works</a>
               </div>
             </div>
-            <div className="hero-visual" aria-hidden="true">
-              <div className="hero-orbit" />
-              <div className="hero-orbit orbit-inner" />
-              <div className="orbit-core"><BrainCircuit size={56} strokeWidth={1.25} /></div>
-              <div className="orbit-label orbit-notes"><BookOpen size={17} /> Notes</div>
-              <div className="orbit-label orbit-cards"><Layers3 size={17} /> Flashcards</div>
-              <div className="orbit-label orbit-review"><Clock3 size={17} /> Timestamped review</div>
+            <div className="hero-visual">
+              <div className="orbit-stage" aria-hidden="true">
+                <div className="hero-orbit" />
+                <div className="orbit-track" />
+                <div className="orbit-core"><BrainCircuit size={56} strokeWidth={1.25} /></div>
+                <OrbitingCircles className="hero-orbit-item" duration={18} path={false}>
+                  <div className="orbit-label"><Clock3 size={17} /> Timestamped review</div>
+                  <div className="orbit-label"><BookOpen size={17} /> Notes</div>
+                  <div className="orbit-label"><Layers3 size={17} /> Flashcards</div>
+                </OrbitingCircles>
+              </div>
             </div>
           </div>
           <section className="preview wrap" id="preview" aria-labelledby="preview-title">
