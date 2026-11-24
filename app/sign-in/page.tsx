@@ -1,18 +1,37 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+"use client"
 
-export const metadata: Metadata = {
-  title: "Sign in | studyHybrid",
-}
+import { useState } from "react"
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { getFirebaseAuth } from "@/lib/firebase"
 
-export default function SignInPage() {
+export default function GoogleSignIn() {
+  const [status, setStatus] = useState("")
+  const [pending, setPending] = useState(false)
+
+  async function handleSignIn() {
+    setPending(true)
+    setStatus("")
+
+    try {
+      const { user } = await signInWithPopup(
+        getFirebaseAuth(),
+        new GoogleAuthProvider()
+      )
+      setStatus(`Signed in as ${user.displayName ?? user.email ?? "Google user"}.`)
+    } catch (error) {
+      console.error(error)
+      setStatus("Google sign-in failed. Check the browser console for details.")
+    } finally {
+      setPending(false)
+    }
+  }
+
   return (
-    <main className="landing grid min-h-dvh place-items-center">
-      <section className="wrap final-cta max-w-lg" aria-labelledby="sign-in-title">
-        <h1 id="sign-in-title" className="text-3xl font-semibold">Sign in</h1>
-        <p>Account sign-in is currently unavailable.</p>
-        <Link className="action" href="/">Back to home</Link>
-      </section>
-    </main>
+    <div>
+      <button type="button" disabled={pending} onClick={handleSignIn}>
+        {pending ? "Signing in…" : "Continue with Google"}
+      </button>
+      <p role="status">{status}</p>
+    </div>
   )
 }
