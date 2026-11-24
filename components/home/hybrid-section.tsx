@@ -8,7 +8,7 @@ export function HybridSection() {
       <div>
         <Fingerprint className="hybrid-icon" size={28} aria-hidden="true" />
         <h2 id="hybrid-title">On-device when possible.</h2>
-        <p>studyHybrid is designed to show where each result was processed, with a local-only option for users who prefer to keep study material on their device.</p>
+        <p>StudyHybrid is designed to show where each result was processed, with a local-only option for users who prefer to keep study material on their device.</p>
       </div>
       <div className="processing">
         <div><Cpu size={22} aria-hidden="true" /><span><strong>On-device</strong>On compatible devices</span></div>

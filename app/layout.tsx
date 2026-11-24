@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "studyHybrid | Turn lectures into lasting knowledge",
+  title: "StudyHybrid | Turn lectures into lasting knowledge",
   description: "Explore a study workspace for timestamped lecture notes, flashcards, and practice quizzes.",
 };
 

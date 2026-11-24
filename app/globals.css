@@ -177,7 +177,7 @@
 .landing a, .landing button { cursor: pointer; }
 .landing section, .preview { scroll-margin-top: 24px; }
 .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
-.site-header, .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
 .site-header { position: relative; z-index: 1; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.125rem; font-weight: 700; letter-spacing: -.04em; white-space: nowrap; }
 .brand span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: #ac87ff; color: #190f31; }
@@ -234,9 +234,50 @@
 .workflow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 25px; }
 .workflow li { border: 1px solid var(--line); border-radius: 15px; background: var(--panel); padding: 22px; }
 .workflow h3 { font-size: 1.125rem; font-weight: 650; margin-bottom: 5px; }
-.site-footer { margin-top: 72px; padding-block: 18px; border-top: 1px solid var(--line); }
+.site-footer {
+  margin-top: clamp(48px, 8vw, 96px);
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+  gap: 32px clamp(40px, 8vw, 112px);
+  padding-block: clamp(40px, 6vw, 72px);
+}
+.footer-brand .brand { min-height: 44px; font-size: 1.375rem; }
+.footer-brand p {
+  max-width: 29ch;
+  margin-top: 16px;
+  color: var(--muted-foreground);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.footer-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+.footer-nav h2 {
+  margin-bottom: 4px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: .875rem;
+  font-weight: 650;
+}
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--muted-foreground);
+  font-size: .875rem;
+}
+.footer-nav .footer-demo { color: var(--lavender); }
+.footer-demo svg { flex-shrink: 0; }
+.footer-nav a:hover { color: var(--foreground); text-decoration: underline; text-underline-offset: 4px; }
 
 @media (max-width: 720px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-nav { border-top: 1px solid var(--line); padding-top: 8px; }
+  .footer-nav h2 { border-bottom: 0; }
   .preview-body { grid-template-columns: 1fr; }
   .lesson { border-right: 0; border-bottom: 1px solid var(--line); }
   .workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }

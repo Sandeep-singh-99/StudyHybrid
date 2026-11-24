@@ -1,8 +1,10 @@
 import { GoogleSignIn } from "@/components/google-sign-in"
+import { Brand } from "./brand"
 
 export function Navbar() {
   return (
     <header className="site-header wrap">
+      <Brand />
       <nav aria-label="Main navigation">
         <a href="#features">Features</a>
         <a href="#workflow">How it works</a>
