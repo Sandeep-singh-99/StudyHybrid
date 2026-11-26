@@ -1,14 +1,12 @@
-import { AudioLines } from "lucide-react"
-import { ShineBorder } from "@/components/ui/shine-border"
+import { BookOpen } from "lucide-react"
 import { StudyPreview } from "./study-preview"
 
 export function PreviewSection() {
   return (
-    <section className="preview wrap" id="preview" aria-labelledby="preview-title">
-      <ShineBorder aria-hidden="true" duration={4.5} className="[animation-iteration-count:1]" shineColor={["#7a62f2", "#bca6ff", "#4bafe8"]} />
+    <section className="preview" id="preview" aria-labelledby="preview-title" tabIndex={-1}>
       <div className="preview-bar">
-        <h2 id="preview-title"><AudioLines size={18} aria-hidden="true" /> StudyHybrid workspace</h2>
-        <span className="demo-label">Interactive demo</span>
+        <h2 id="preview-title"><BookOpen size={16} aria-hidden="true" /> Study workspace</h2>
+        <span className="demo-label"><span /> Interactive demo</span>
       </div>
       <StudyPreview />
     </section>

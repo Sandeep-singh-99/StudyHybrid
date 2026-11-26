@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { BookOpen, Check, CircleHelp, Clock3, Layers3, Play } from "lucide-react"
+import { BookOpen, Check, CircleHelp, Clock3, Layers3, Sparkles } from "lucide-react"
 
 const chapters = [
   { time: "00:00", title: "What is memory?", note: "Memory is the process of encoding, storing and retrieving information." },
@@ -27,7 +27,7 @@ export function StudyPreview() {
       <div className="lesson">
         <div className="lesson-art" aria-hidden="true">
           <div className="lesson-rings" />
-          <Play size={28} fill="currentColor" />
+          <Sparkles size={27} strokeWidth={1.4} />
           <span>{chapter.time}</span>
         </div>
         <h3>How memory works</h3>
@@ -57,7 +57,7 @@ export function StudyPreview() {
             <span className="timestamp"><Clock3 size={14} aria-hidden="true" />{chapter.time}</span>
             <h3>{chapter.title}</h3>
             <p>{chapter.note}</p>
-            <div className="takeaway"><Check size={16} aria-hidden="true" /><span>Use active recall to strengthen what you remember.</span></div>
+            <div className="takeaway"><Check size={16} aria-hidden="true" /><span><strong>Study tip</strong>Use active recall to strengthen what you remember.</span></div>
           </div>
         )}
         {mode === "Flashcards" && (
