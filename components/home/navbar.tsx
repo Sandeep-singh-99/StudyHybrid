@@ -10,7 +10,7 @@ export function Navbar() {
         <a href="#workflow">How it works</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <GoogleSignIn />
+      <GoogleSignIn showDashboard />
     </header>
   )
 }

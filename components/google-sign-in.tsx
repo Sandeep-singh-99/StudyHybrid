@@ -4,10 +4,11 @@ import { FirebaseError } from "firebase/app"
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, type User } from "firebase/auth"
 import { UserRound } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { getFirebaseAuth } from "@/lib/firebase"
 
-export function GoogleSignIn({ label = "Sign in" }: { label?: string }) {
+export function GoogleSignIn({ label = "Sign in", showDashboard = false }: { label?: string; showDashboard?: boolean }) {
   const [user, setUser] = useState<User | null>()
   const [pending, setPending] = useState(false)
   const [status, setStatus] = useState("")
@@ -44,21 +45,26 @@ export function GoogleSignIn({ label = "Sign in" }: { label?: string }) {
     const name = user.displayName || user.email || "Google user"
 
     return (
-      <span className="relative grid size-11 shrink-0 place-items-center overflow-hidden rounded-full bg-[#17152c]" role="img" aria-label={`Signed in as ${name}`} title={name}>
-        <UserRound aria-hidden="true" size={22} />
-        {user.photoURL && (
-          <Image
-            src={user.photoURL}
-            alt=""
-            width={44}
-            height={44}
-            unoptimized
-            referrerPolicy="no-referrer"
-            className="absolute inset-0 size-full object-cover"
-            onError={(event) => { event.currentTarget.hidden = true }}
-          />
+      <div className="flex items-center gap-2">
+        {showDashboard && (
+          <Link href="/dashboard" className="action small">Dashboard</Link>
         )}
-      </span>
+        <span className="relative grid size-11 shrink-0 place-items-center overflow-hidden rounded-full bg-[#17152c] text-white" role="img" aria-label={`Signed in as ${name}`} title={name}>
+          <UserRound aria-hidden="true" size={22} />
+          {user.photoURL && (
+            <Image
+              src={user.photoURL}
+              alt=""
+              width={44}
+              height={44}
+              unoptimized
+              referrerPolicy="no-referrer"
+              className="absolute inset-0 size-full object-cover"
+              onError={(event) => { event.currentTarget.hidden = true }}
+            />
+          )}
+        </span>
+      </div>
     )
   }
 
