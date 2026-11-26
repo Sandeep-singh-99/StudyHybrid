@@ -15,9 +15,11 @@ const modes = [
   { name: "Quiz", icon: CircleHelp },
 ] as const
 
-export function StudyPreview() {
+type StudyMode = (typeof modes)[number]["name"]
+
+export function StudyPreview({ showQuizResults = false }: { showQuizResults?: boolean }) {
   const [chapterIndex, setChapterIndex] = useState(1)
-  const [mode, setMode] = useState<(typeof modes)[number]["name"]>("Notes")
+  const [mode, setMode] = useState<StudyMode>("Notes")
   const [flipped, setFlipped] = useState(false)
   const [answer, setAnswer] = useState<string>()
   const chapter = chapters[chapterIndex]
@@ -79,6 +81,12 @@ export function StudyPreview() {
               ))}
             </div>
             <p role="status">{answer && (answer === "Working memory" ? "Correct. Working memory holds information in active use." : "Try again. Long-term memory stores information for later.")}</p>
+            {showQuizResults && answer && (
+              <dl className="mt-3 flex flex-wrap gap-4 rounded-lg bg-[#edf4e8] p-3 text-sm">
+                <div><dt className="font-semibold">Score</dt><dd>{answer === "Working memory" ? "1 / 1" : "0 / 1"}</dd></div>
+                <div><dt className="font-semibold">{answer === "Working memory" ? "Topic practiced" : "Topic to review"}</dt><dd>Working memory</dd></div>
+              </dl>
+            )}
             {answer === "Long-term memory" && (
               <button className="action small" type="button" onClick={() => {
                 setChapterIndex(1)
